@@ -2,11 +2,14 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import csv
 from .models import Query
+from django.conf import settings
+import os
 # Create your views here.
 
 
 def index(request):
-    with open("..\\searchapp\\word_search.tsv") as tsvfile:
+    file_path = os.path.join(settings.FILES_DIR, 'word_search.tsv')
+    with open(file_path) as tsvfile:
         tsvreader = csv.reader(tsvfile, delimiter="\t")
         for line in tsvreader:
             q = Query(word_name=line[0], word_frequency=line[1], word_length=len(line[0]))
