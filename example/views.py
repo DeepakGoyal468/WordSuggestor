@@ -6,7 +6,7 @@ from .models import Query
 
 
 def index(request):
-    with open("C:\\Users\\Deepak Goyal\\Downloads\\word_search.tsv") as tsvfile:
+    with open("..\\word_search.tsv") as tsvfile:
         tsvreader = csv.reader(tsvfile, delimiter="\t")
         for line in tsvreader:
             q = Query(word_name=line[0], word_frequency=line[1], word_length=len(line[0]))
